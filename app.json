@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "future-plan-app-new",
+    "slug": "future-plan-app-new"
+  }
+}
