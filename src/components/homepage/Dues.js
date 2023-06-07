@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { global_styles, colors } from '../../assets/css/global_css';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Table, Row } from 'react-native-table-component';
+import { globalStyles, colors } from '../../assets/css/globalCss';
 
 export default function Dues() {
-  const table_head = [
+  const tableHead = [
     'Sl.',
     'Name',
     'Share',
@@ -16,87 +17,107 @@ export default function Dues() {
     {
       id: 1,
       name: 'Md. Salim Rana',
-      phone: '01700000000',
       share: 2,
-      due_month: 4,
-      due_amount: 1000,
+      dueMonth: 4,
+      dueAmount: 1000,
+      phone: '01700000000',
     },
     {
       id: 2,
       name: 'Md. Salim Rana',
-      phone: '01700000000',
       share: 2,
-      due_month: 4,
-      due_amount: 1000,
+      dueMonth: 4,
+      dueAmount: 1000,
+      phone: '01700000000',
     },
     {
       id: 3,
       name: 'Md. Salim Rana',
-      phone: '01700000000',
       share: 2,
-      due_month: 4,
-      due_amount: 1000,
+      dueMonth: 4,
+      dueAmount: 1000,
+      phone: '01700000000',
     },
     {
       id: 4,
       name: 'Md. Salim Rana',
-      phone: '01700000000',
       share: 2,
-      due_month: 4,
-      due_amount: 1000,
+      dueMonth: 4,
+      dueAmount: 1000,
+      phone: '01700000000',
     },
   ];
 
+  const widthArr = [30, 150, 40, 100, 100, 100];
+
   return (
-    <View>
-      <Text style={global_styles.section_title}>Dues</Text>
+    <View style={styles.container}>
+      <Text style={globalStyles.sectionTitle}>Dues</Text>
 
-      <View style={styles.list_container}>
-        {/* table head */}
-        <View style={styles.table_head}>
-          {table_head.map((item, index) => {
-            return <Text style={styles.table_head_item}>{item}</Text>;
-          })}
-        </View>
+      <View style={styles.listContainer}>
+        <ScrollView horizontal={true}>
+          <Table>
+            <Row
+              data={tableHead}
+              widthArr={widthArr}
+              style={[styles.tableHead]}
+            />
 
-        {/* table body */}
-        {data.map((item, index) => {
-          return (
-            <View style={styles.table_row}>
-              <Text style={{ ...styles.table_row_cell }}>{index + 1}</Text>
-              <Text style={{ ...styles.table_row_cell }}>{item.name}</Text>
-              <Text style={{ ...styles.table_row_cell }}>{item.share}</Text>
-              <Text style={{ ...styles.table_row_cell }}>{item.due_month}</Text>
-              <Text style={{ ...styles.table_row_cell }}>
-                {item.due_amount}
-              </Text>
-              <Text style={{ ...styles.table_row_cell }}>{item.phone}</Text>
-            </View>
-          );
-        })}
+            {data.map((item, index) => (
+              <Row
+                key={item.id}
+                data={Object.values(item)}
+                widthArr={widthArr}
+                style={[
+                  styles.tableRow,
+                  index % 2 !== 0 && { backgroundColor: '#f2f2f2' },
+                  data?.[index]?.dueMonth >= 3 && {
+                    color: 'red',
+                  },
+                ]}
+              />
+            ))}
+          </Table>
+        </ScrollView>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  list_container: {
+  container: {
+    marginTop: 24,
+  },
+  listContainer: {
     backgroundColor: colors.white,
-    padding: 16,
     borderRadius: 4,
+    color: colors.black,
+    borderWidth: 1,
+    borderColor: colors.grayDark,
   },
-  table_head: {
-    flexDirection: 'row',
+  tableHead: {
+    textAlign: 'center',
+    height: 40,
+    paddingHorizontal: 8,
+    backgroundColor: colors.grayDark,
+    color: colors.white,
   },
-  list_item_name: {
+  tableRow: {
+    textAlign: 'center',
+    height: 30,
+  },
+  listItemName: {
     // fontWeight: '500',
   },
-  list_item_amount: {
+  listItemAmount: {
     width: 100,
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 4,
     textAlign: 'right',
     color: colors.white,
+  },
+  tableCol1: {
+    width: 30,
   },
 });

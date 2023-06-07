@@ -1,7 +1,6 @@
+import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Link } from 'expo-router';
-import React, { useState, useContext } from 'react';
-import { global_styles, colors } from '../src/assets/css/global_css';
+import { globalStyles, colors } from '../src/assets/css/globalCss';
 import TotalSummary from '../src/components/homepage/TotalSummary';
 import Dues from '../src/components/homepage/Dues';
 
@@ -18,7 +17,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.gray_medium,
-    ...global_styles.padding,
+    backgroundColor: colors.grayMedium,
+    ...globalStyles.padding,
   },
 });

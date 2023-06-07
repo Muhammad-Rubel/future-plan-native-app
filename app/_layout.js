@@ -1,8 +1,8 @@
 import { Slot } from 'expo-router';
 import { SafeAreaView, View, Text, StyleSheet } from 'react-native';
+import { globalStyles, colors } from '../src/assets/css/globalCss';
 import Header from '../src/components/Header';
 import StoreContextLayout from '../store/useStore';
-import { global_styles, colors } from '../src/assets/css/global_css';
 
 export default function HomeLayout() {
   return (
@@ -10,7 +10,7 @@ export default function HomeLayout() {
       <SafeAreaView style={styles.container}>
         <Header></Header>
 
-        <View style={styles.content_container}>
+        <View style={styles.contentContainer}>
           <Slot />
         </View>
       </SafeAreaView>
@@ -21,9 +21,9 @@ export default function HomeLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    color: colors.gray_dark,
+    color: colors.grayDark,
   },
-  content_container: {
+  contentContainer: {
     flex: 1,
     paddingTop: 75,
   },
