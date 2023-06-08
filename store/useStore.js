@@ -1,4 +1,5 @@
 import { useState, createContext } from 'react';
+import { PaperProvider } from 'react-native-paper';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const StoreContext = createContext();
@@ -23,7 +24,7 @@ export default function StoreContextLayout({ children }) {
 
   return (
     <StoreContext.Provider value={{ name, setName, age, setAge }}>
-      {children}
+      <PaperProvider>{children}</PaperProvider>
     </StoreContext.Provider>
   );
 }

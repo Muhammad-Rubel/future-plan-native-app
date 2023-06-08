@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Table, Row } from 'react-native-table-component';
+import { DataTable } from 'react-native-paper';
 import { globalStyles, colors } from '../../assets/css/globalCss';
 
 export default function Dues() {
@@ -48,36 +48,56 @@ export default function Dues() {
     },
   ];
 
-  const widthArr = [30, 150, 40, 100, 100, 100];
+  const widthArr = ['5px', '200px', '40px', '100px', '100px', '100px'];
 
   return (
     <View style={styles.container}>
       <Text style={globalStyles.sectionTitle}>Dues</Text>
 
-      <View style={styles.listContainer}>
+      <View style={styles.tableContainer}>
         <ScrollView horizontal={true}>
-          <Table>
-            <Row
-              data={tableHead}
-              widthArr={widthArr}
-              style={[styles.tableHead]}
-            />
+          <DataTable>
+            <DataTable.Header style={{ backgroundColor: colors.grayDark }}>
+              {tableHead.map((item, index) => (
+                <DataTable.Title
+                  key={index}
+                  style={[styles.tableHead, { width: widthArr[index] }]}
+                >
+                  <Text
+                    style={{
+                      color: colors.white,
+                      textAlign: 'center',
+                    }}
+                  >
+                    {item}
+                  </Text>
+                </DataTable.Title>
+              ))}
+            </DataTable.Header>
 
             {data.map((item, index) => (
-              <Row
-                key={item.id}
-                data={Object.values(item)}
-                widthArr={widthArr}
-                style={[
-                  styles.tableRow,
-                  index % 2 !== 0 && { backgroundColor: '#f2f2f2' },
-                  data?.[index]?.dueMonth >= 3 && {
-                    color: 'red',
-                  },
-                ]}
-              />
+              <DataTable.Row key={index}>
+                <DataTable.Cell numeric style={{ width: widthArr[0] }}>
+                  {item.id}
+                </DataTable.Cell>
+                <DataTable.Cell style={{ width: widthArr[1] }}>
+                  {item.name}
+                </DataTable.Cell>
+                <DataTable.Cell numeric style={{ width: widthArr[2] }}>
+                  {item.share}
+                </DataTable.Cell>
+                <DataTable.Cell numeric style={{ width: widthArr[3] }}>
+                  {item.dueMonth}
+                </DataTable.Cell>
+                <DataTable.Cell numeric style={{ width: widthArr[4] }}>
+                  {item.dueAmount}
+                </DataTable.Cell>
+                <DataTable.Cell style={{ width: widthArr[5] }}>
+                  {item.phone}
+                </DataTable.Cell>
+              </DataTable.Row>
             ))}
-          </Table>
+          </DataTable>
         </ScrollView>
       </View>
     </View>
@@ -88,36 +108,11 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 24,
   },
-  listContainer: {
+  tableContainer: {
     backgroundColor: colors.white,
     borderRadius: 4,
     color: colors.black,
     borderWidth: 1,
     borderColor: colors.grayDark,
-  },
-  tableHead: {
-    textAlign: 'center',
-    height: 40,
-    paddingHorizontal: 8,
-    backgroundColor: colors.grayDark,
-    color: colors.white,
-  },
-  tableRow: {
-    textAlign: 'center',
-    height: 30,
-  },
-  listItemName: {
-    // fontWeight: '500',
-  },
-  listItemAmount: {
-    width: 100,
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 4,
-    textAlign: 'right',
-    color: colors.white,
-  },
-  tableCol1: {
-    width: 30,
   },
 });
