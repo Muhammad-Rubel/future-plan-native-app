@@ -4,6 +4,8 @@ import { globalStyles, colors } from '../src/assets/css/globalCss';
 import Header from '../src/components/Header';
 import StoreContextLayout from '../store/useStore';
 
+// https://future-plan-api.srwebstudio.com/api
+
 export default function HomeLayout() {
   return (
     <StoreContextLayout>
